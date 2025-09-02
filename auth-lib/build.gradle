@@ -68,6 +68,13 @@ android {
     unitTestVariants.configureEach {
         it.mergedFlavor.manifestPlaceholders += manifestPlaceholdersForTests
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -86,7 +93,7 @@ publishing {
             version = '2.1.4'
 
             afterEvaluate {
-                from components.findByName('release')
+                from components.release
             }
         }
     }
