@@ -375,7 +375,8 @@ public final class AuthorizationClient {
     public AuthorizationClient(Activity activity) {
         mLoginActivity = activity;
 
-        mAuthorizationHandlers.add(new SpotifyAuthHandler());
+        // SpotifyアプリがPKCE対応してないっぽいのでコメントアウト
+//        mAuthorizationHandlers.add(new SpotifyAuthHandler());
         mAuthorizationHandlers.add(new FallbackHandlerProvider().provideFallback());
     }
 
