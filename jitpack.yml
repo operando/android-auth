@@ -1,2 +1,7 @@
 jdk:
     - openjdk11
+before_install:
+    - ./scripts/prepareJitpackEnvironment.sh
+install:
+    - FILE="-Dfile=auth-release.aar"
+    - mvn install:install-file $FILE -DgroupId=com.github.operando -DartifactId=spotify-android-auth -Dversion=2.1.4 -Dpackaging=aar -DgeneratePom=true
