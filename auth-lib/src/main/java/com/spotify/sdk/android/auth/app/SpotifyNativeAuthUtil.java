@@ -22,6 +22,8 @@
 package com.spotify.sdk.android.auth.app;
 
 import static com.spotify.sdk.android.auth.IntentExtras.KEY_CLIENT_ID;
+import static com.spotify.sdk.android.auth.IntentExtras.KEY_CODE_CHALLENGE;
+import static com.spotify.sdk.android.auth.IntentExtras.KEY_CODE_CHALLENGE_METHOD;
 import static com.spotify.sdk.android.auth.IntentExtras.KEY_REDIRECT_URI;
 import static com.spotify.sdk.android.auth.IntentExtras.KEY_REQUESTED_SCOPES;
 import static com.spotify.sdk.android.auth.IntentExtras.KEY_RESPONSE_TYPE;
@@ -103,6 +105,13 @@ public class SpotifyNativeAuthUtil {
         intent.putExtra(KEY_UTM_SOURCE, mRequest.getSource());
         intent.putExtra(KEY_UTM_CAMPAIGN, mRequest.getCampaign());
         intent.putExtra(KEY_UTM_MEDIUM, mRequest.getMedium());
+
+        if (mRequest.getCustomParam(KEY_CODE_CHALLENGE_METHOD) != null) {
+            intent.putExtra(KEY_CODE_CHALLENGE_METHOD, mRequest.getCustomParam(KEY_CODE_CHALLENGE_METHOD));
+        }
+        if (mRequest.getCustomParam(KEY_CODE_CHALLENGE) != null) {
+            intent.putExtra(KEY_CODE_CHALLENGE, mRequest.getCustomParam(KEY_CODE_CHALLENGE));
+        }
 
         try {
             mContextActivity.startActivityForResult(intent, LoginActivity.REQUEST_CODE);
