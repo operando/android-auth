@@ -111,3 +111,18 @@ tasks.register('checkstyle', Checkstyle) {
     exclude '**/gen/**'
     classpath = files()
 }
+
+apply plugin: 'maven-publish'
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.operando.spotify.android'
+            artifactId = 'auth'
+            version = '2.1.3'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
