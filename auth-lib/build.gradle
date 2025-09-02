@@ -86,7 +86,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.spotify.android'
             artifactId = 'auth'
-            version = '2.1.6'
+            version = '2.2.0'
 
             afterEvaluate {
                 from components.release
