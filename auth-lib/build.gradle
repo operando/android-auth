@@ -25,6 +25,8 @@ plugins {
 }
 
 android {
+    compileSdk  33
+
     buildFeatures {
         buildConfig = true
     }
