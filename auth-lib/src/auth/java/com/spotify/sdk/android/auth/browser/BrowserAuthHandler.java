@@ -79,6 +79,8 @@ public class BrowserAuthHandler implements AuthorizationHandler {
                     if (mTabsSession != null) {
                         CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder().setSession(mTabsSession).build();
                         customTabsIntent.launchUrl(mContext, request.toUri());
+                        // ここタイミング的にLoginActivityのonResume後に呼び出されるから、CustomTabsで認証する時は問題おきない
+                        // とはいえ処理速度次第だからonResumeより前に呼び出される可能性も0ではないけどね
                         mIsAuthInProgress = true;
                     } else {
                         unbindCustomTabsService();
@@ -126,6 +128,8 @@ public class BrowserAuthHandler implements AuthorizationHandler {
         }
         mContext.startActivity(new Intent(Intent.ACTION_VIEW, mUri));
         mIsAuthInProgress = true;
+        // こっちの外部ブラウザのケースはLoginActivityのonCreate時点でmIsAuthInProgressをtrueにするから、LoginActivityのonResumeでnotifyInCaseUserCanceledAuthでキャンセルが起きる
+        // その結果認証前にLoginActivityの結果がemptyで返ってしまう
     }
 
     private boolean internetPermissionNotGranted(Context context) {
