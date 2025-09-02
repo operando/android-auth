@@ -24,10 +24,6 @@ plugins {
     id 'maven-publish'
 }
 
-project.group = 'com.spotify.android'
-project.archivesBaseName = 'auth'
-project.version = '2.1.2'
-
 android {
     compileSdk 33
 
@@ -90,7 +86,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.spotify.android'
             artifactId = 'auth'
-            version = '2.1.4'
+            version = '2.1.5'
 
             afterEvaluate {
                 from components.release
