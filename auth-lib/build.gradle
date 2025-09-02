@@ -29,6 +29,8 @@ project.archivesBaseName = 'auth'
 project.version = '2.1.2'
 
 android {
+    compileSdk 33
+
     buildFeatures {
         buildConfig = true
     }
@@ -76,15 +78,15 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.11.1'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.spotify.android'
+            artifactId = 'auth'
+            version = '2.1.4'
+
+            afterEvaluate {
                 from components.findByName('release')
-                groupId = 'com.spotify.android'
-                artifactId = 'auth'
-                version = '2.1.4'
             }
         }
     }
