@@ -29,9 +29,6 @@ project.archivesBaseName = 'auth'
 project.version = '2.1.2'
 
 android {
-    compileSdk 33
-    buildToolsVersion = '33.0.0'
-
     buildFeatures {
         buildConfig = true
     }
